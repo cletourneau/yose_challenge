@@ -3,3 +3,4 @@
 *.pyc
 *.egg/
 *.egg-info/
+.idea/workspace.xml

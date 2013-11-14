@@ -16,6 +16,10 @@ def setup():
     local('virtualenv --distribute --python=python2.7 {env}'.format(env=VIRTUALENV))
     install_requirements()
 
+@task
+def deploy():
+    local('git push dokku master')
+
 
 @task
 def install_requirements():
