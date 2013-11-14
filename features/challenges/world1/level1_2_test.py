@@ -27,7 +27,7 @@ class ShareChallenge(unittest.TestCase):
         with Browser() as browser:
             browser.visit(self.server_url)
 
-            a = browser.find_by_css('a#repository_link').first
+            a = browser.find_by_css('a#repository-link').first
             a.click()
 
             assert_that(browser.is_text_present('YoseTheGame'))
