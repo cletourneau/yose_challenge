@@ -10,15 +10,14 @@ SERVER_CMD = ['gunicorn', 'yose:APP', '-w', '1', '-b', '0.0.0.0:{port}'.format(p
 
 class PingChallenge(unittest.TestCase):
 
-    def test_server_should_responds_200_on_ping_route(self):
-        response = requests.get('http://{server_address}:{server_port}/ping'.format(server_address='localhost', server_port=SERVER_PORT))
+    def setUp(self):
+        self.response = requests.get('http://{server_address}:{server_port}/ping'.format(server_address='localhost', server_port=SERVER_PORT))
 
-        assert_that(response.status_code, is_(200))
+    def test_server_should_responds_200_on_ping_route(self):
+        assert_that(self.response.status_code, is_(200))
 
     def test_server_says_its_alive(self):
-        r = requests.get('{0}/ping'.format('http://localhost:8080'))
-
-        response = r.json()
+        response = self.response.json()
         assert_that(response['alive'], is_(True))
 
     @classmethod
