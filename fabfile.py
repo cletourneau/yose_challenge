@@ -32,8 +32,7 @@ def install_requirements():
 
 @task
 def test():
-    with prefix(_activate_virtual_env()):
-        with YoseServer(port=8080):
+    with prefix(_activate_virtual_env()), YoseServer(port=8080):
             local("nosetests --tc=server_url:'http://localhost:8080'")
             local('killall phantomjs')
 
