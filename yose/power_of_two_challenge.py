@@ -1,10 +1,12 @@
-from flask import make_response, jsonify
+from flask import make_response, jsonify, request
 from yose import APP as app
+from yose.prime_factors import prime_factors_of
+
 
 @app.route('/primeFactors', methods=['GET'])
 def power_of_two():
-    response = make_response(jsonify({
-        'number': 16,
-        'decomposition': [2, 2, 2, 2]
+    number = int(request.args.get('number'))
+    return make_response(jsonify({
+        'number': number,
+        'decomposition': (prime_factors_of(number))
     }))
-    return response
