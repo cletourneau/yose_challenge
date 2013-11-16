@@ -2,12 +2,14 @@ from httplib import OK
 import unittest
 from features.challenges.world1 import disable_annoying_selenium_logs, phantomjs_path
 from hamcrest import assert_that, is_, contains_string
+from nose.plugins.attrib import attr
 from nose.tools import istest
 import requests
 from splinter import Browser
 from testconfig import config
 
 
+@attr(needs_server=True)
 class ShareChallenge(unittest.TestCase):
 
     def setUp(self):

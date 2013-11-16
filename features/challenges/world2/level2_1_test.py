@@ -1,11 +1,13 @@
 from httplib import OK
 import unittest
 from hamcrest import assert_that, is_
+from nose.plugins.attrib import attr
 from nose.tools import istest
 import requests
 from testconfig import config
 
 
+@attr(needs_server=True)
 class PowerOfTwoChallenge(unittest.TestCase):
 
     def setUp(self):
