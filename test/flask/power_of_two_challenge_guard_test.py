@@ -6,7 +6,7 @@ from nose.tools import istest
 from yose import APP as app
 
 
-class PowerOfTwoChallengeTest(unittest.TestCase):
+class PowerOfTwoChallengeGuardTest(unittest.TestCase):
 
     def setUp(self):
         app.config['TESTING'] = True

@@ -2,6 +2,6 @@ from flask import Flask
 
 APP = Flask(__name__)
 
-import ping_challenge
-import share_challenge
-import power_of_two_challenge
+import endpoints.ping_challenge
+import endpoints.share_challenge
+import endpoints.power_of_two_challenge

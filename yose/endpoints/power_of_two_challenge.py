@@ -21,7 +21,7 @@ def power_of_two():
 def prime_factors_response(number):
     return make_response(jsonify({
         'number': number,
-        'decomposition': prime_factors_of(number)
+        'decomposition': prime_factors_of(number),
     }))
 
 
