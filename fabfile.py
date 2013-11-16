@@ -17,6 +17,7 @@ def setup():
     local('virtualenv --distribute --python=python2.7 {env}'.format(env=VIRTUALENV))
     install_requirements()
 
+
 @task
 def deploy():
     local('git push dokku master')
@@ -34,6 +35,7 @@ def install_requirements():
 def unit():
     with prefix(_activate_virtual_env()):
         local("nosetests -a '!needs_server'")
+
 
 @task
 def test():
@@ -53,6 +55,7 @@ def _activate_virtual_env():
         return '. {env}/bin/activate'.format(env=VIRTUALENV)
     else:
         return 'true'
+
 
 class YoseServer():
     def __init__(self, port=8080):
