@@ -4,17 +4,28 @@ from flask.json import dumps
 from yose import APP as app
 from yose.prime_factors import prime_factors_of
 
-BIGGEST_SUPPORTED_NUMBER = 1e6
+MAX_NUMBER_VALUE = 1e6
 
 
 @app.route('/primeFactors', methods=['GET'])
 def power_of_two():
-    query_string_numbers = request.args.getlist('number')
-    response = [response_for(number) for number in query_string_numbers]
+    numbers = extract_numbers_from_query_string()
 
-    if len(response) == 1:
-        response = response[0]
+    response = [response_for(number) for number in numbers]
+    response = first_element_if_only_one(response)
 
+    return json_response_for(response)
+
+
+def first_element_if_only_one(response):
+    return response[0] if len(response) == 1 else response
+
+
+def extract_numbers_from_query_string():
+    return request.args.getlist('number')
+
+
+def json_response_for(response):
     return make_response(dumps(response), OK, {'content-type': 'application/json'})
 
 
@@ -50,7 +61,7 @@ def not_a_number_error(number):
 
 
 def number_is_too_big(number):
-    return number > BIGGEST_SUPPORTED_NUMBER
+    return number > MAX_NUMBER_VALUE
 
 
 def number_too_big_error(number):
@@ -58,5 +69,3 @@ def number_too_big_error(number):
         'number': number,
         'error': 'too big number (>1e6)'
     }
-
-
