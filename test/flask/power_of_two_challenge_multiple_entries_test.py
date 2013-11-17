@@ -1,12 +1,11 @@
 import json
 import unittest
-from hamcrest import is_, assert_that, has_length
+from hamcrest import assert_that, has_length, equal_to
 from nose.tools import istest
 from yose import APP as app
 
 
 class PowerOfTwoChallengeMultipleEntriesTest(unittest.TestCase):
-
     def setUp(self):
         app.config['TESTING'] = True
         self.app = app.test_client()
@@ -21,23 +20,25 @@ class PowerOfTwoChallengeMultipleEntriesTest(unittest.TestCase):
         assert_that(json.loads(self.response.data), has_length(3))
 
     @istest
-    def numbers_in_request_are_responded(self):
+    def all_numbers_in_request_are_responded(self):
         response = json.loads(self.response.data)
 
-        primes_of_300 = response[0]
-        primes_of_120 = response[1]
+        assert_that(response[0], equal_to({
+            'number': 300,
+            'decomposition': [2, 2, 3, 5, 5],
+        }))
 
-        assert_that(primes_of_300['number'], is_(300))
-        assert_that(primes_of_120['number'], is_(120))
+        assert_that(response[1], equal_to({
+            'number': 120,
+            'decomposition': [2, 2, 2, 3, 5]
+        }))
 
-        assert_that(primes_of_300['decomposition'], is_([2, 2, 3, 5, 5]))
-        assert_that(primes_of_120['decomposition'], is_([2, 2, 2, 3, 5]))
 
     @istest
     def errors_in_request_are_responded(self):
         response = json.loads(self.response.data)
 
-        not_a_number_error = response[2]
-
-        assert_that(not_a_number_error['number'], is_('hello'))
-        assert_that(not_a_number_error['error'], is_('not a number'))
+        assert_that(response[2], equal_to({
+            'number': 'hello',
+            'error': 'not a number'
+        }))
