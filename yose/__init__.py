@@ -8,3 +8,4 @@ add_jade_support(APP)
 import endpoints.ping_challenge
 import endpoints.share_challenge
 import endpoints.power_of_two_challenge
+import endpoints.prime_factors_ui
