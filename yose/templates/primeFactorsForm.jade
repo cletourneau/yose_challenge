@@ -5,8 +5,8 @@ html(lang="en")
     body
         #title Prime factors
         #invitation Type the number to break down
-        form
-            input#number(type="text")
-            button#go Go!
+        form(method="post", action="/primeFactors/ui")
+            input#number(type="text", name="number")
+            button#go(type="submit") Go!
 
-        #result 3240 = 2 x 2 x 2 x 3 x 3 x 3 x 3 x 5
+        #result= result
