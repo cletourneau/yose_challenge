@@ -15,16 +15,6 @@ class PrimeFactorsFormTest(unittest.TestCase):
         disable_annoying_selenium_logs()
 
     @istest
-    def has_a_form_to_input_number(self):
-        with Browser(driver_name='phantomjs', executable_path=phantomjs_path()) as browser:
-            browser.visit(self.server_url + '/primeFactors/ui')
-
-            assert_that(browser.is_element_present_by_id('title'))
-            assert_that(browser.is_element_present_by_id('invitation'))
-            assert_that(browser.is_element_present_by_css('form input#number'))
-            assert_that(browser.is_element_present_by_css('form button#go'))
-
-    @istest
     def displays_the_decomposition_of_the_input_number(self):
         with Browser(driver_name='phantomjs', executable_path=phantomjs_path()) as browser:
             browser.visit(self.server_url + '/primeFactors/ui')
