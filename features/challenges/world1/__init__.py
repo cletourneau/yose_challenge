@@ -10,7 +10,7 @@ def disable_annoying_selenium_logs():
 
 
 def phantomjs_path():
-    return get_current_file_dir(inspect.currentframe()) + '/../../../node_modules/phantomjs/bin/phantomjs'
+    return get_current_file_dir(inspect.currentframe()) + '/../../../node/node_modules/phantomjs/bin/phantomjs'
 
 
 def get_current_file_dir(currentframe):

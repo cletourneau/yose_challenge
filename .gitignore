@@ -5,4 +5,4 @@
 *.egg-info/
 .idea/workspace.xml
 ghostdriver.log
-node_modules/
+node/node_modules/

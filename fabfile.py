@@ -1,4 +1,4 @@
-import sys
+from fabric.context_managers import lcd
 from fabric.decorators import task
 from fabric.operations import local
 from features.driver.server_driver import ServerDriver
@@ -13,7 +13,8 @@ def default():
 
 @task
 def setup():
-    install_requirements()
+    install_python_requirements()
+    install_node_requirements()
 
 
 @task
@@ -22,10 +23,15 @@ def deploy():
 
 
 @task
-def install_requirements():
+def install_python_requirements():
     local('pip install -r requirements.txt --use-mirrors')
     local('pip install -r requirements-test.txt --use-mirrors')
-    #local('npm install')
+
+
+@task
+def install_node_requirements():
+    with lcd('node'):
+        local('npm install')
 
 
 @task
