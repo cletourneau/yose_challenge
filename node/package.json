@@ -1,9 +1,9 @@
 {
-    "name": "yose",
-    "version": "0.0.1",
-
-    "devDependencies": {
-        "phantomjs": "1.9.2-2"
-    },
-    "engine": "node >= 0.10.3"
+  "name": "yose",
+  "version": "0.0.1",
+  "devDependencies": {
+    "coffee-script": "~1.6.3",
+    "phantomjs": "1.9.2-2"
+  },
+  "engine": "node >= 0.10.3"
 }

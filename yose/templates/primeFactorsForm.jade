@@ -1,12 +1,14 @@
 !!! 5
 html(lang="en")
-    head
-        title Prime factors
-    body
-        #title Prime factors
-        #invitation Type the number to break down
-        form(method="post", action="/primeFactors/ui")
-            input#number(type="text", name="number")
-            button#go(type="submit") Go!
+  head
+    title Prime factors
+  body
+    #title Prime factors
+    #invitation Type the number to break down
+    form
+      input#number(type="text", name="number")
+      button#go Go!
 
-        #result= result
+    #result
+    script(type='text/javascript', src='/static/lib/jquery-2.0.3.min.js')
+    script(type='text/javascript', src='/static/js/primeFactors.js')
